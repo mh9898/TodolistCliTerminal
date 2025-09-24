@@ -1,6 +1,6 @@
 // src/components/TodoList.tsx
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import TodoItem from '@components/TodoItem';
 
 export interface Todo {
@@ -20,24 +20,32 @@ export default function TodoList({
   onToggleTodo,
   onDeleteTodo,
 }: TodoListProps) {
+  const renderTodoItem = ({ item }: { item: Todo }) => (
+    <TodoItem
+      text={item.text}
+      index={parseInt(item.id)}
+      completed={item.completed}
+      onPress={() => onToggleTodo?.(item.id)}
+    />
+  );
+
   return (
-    <View style={styles.container}>
-      {todos.map(todo => (
-        <TodoItem
-          key={todo.id}
-          text={todo.text}
-          index={parseInt(todo.id)}
-          completed={todo.completed}
-          onPress={() => onToggleTodo?.(todo.id)}
-        />
-      ))}
-    </View>
+    <FlatList
+      data={todos}
+      renderItem={renderTodoItem}
+      keyExtractor={item => item.id}
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+  },
+  contentContainer: {
     alignItems: 'center',
+    paddingVertical: 10,
   },
 });
