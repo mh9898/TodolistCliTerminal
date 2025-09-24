@@ -33,6 +33,10 @@ export default function TodoApp() {
     );
   };
 
+  const deleteTodo = (id: string) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -47,7 +51,11 @@ export default function TodoApp() {
           buttonTitle="Add"
         />
         {/* Test: 'should add todo when button is pressed' - renders added todos */}
-        <TodoList todos={todos} onToggleTodo={toggleTodo} />
+        <TodoList
+          todos={todos}
+          onToggleTodo={toggleTodo}
+          onDeleteTodo={deleteTodo}
+        />
       </View>
     </SafeAreaView>
   );

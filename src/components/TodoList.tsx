@@ -26,6 +26,7 @@ export default function TodoList({
       index={parseInt(item.id)}
       completed={item.completed}
       onPress={() => onToggleTodo?.(item.id)}
+      onDelete={() => onDeleteTodo?.(item.id)}
     />
   );
 
