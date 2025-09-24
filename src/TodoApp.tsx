@@ -1,6 +1,6 @@
 // src/TodoApp.tsx
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import AppHeader from '@components/AppHeader';
 import TodoInput from '@components/TodoInput';
 import TodoList, { Todo } from '@components/TodoList';
@@ -34,27 +34,32 @@ export default function TodoApp() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Test: 'renders title "My Todo List"' - verifies title display */}
-      <AppHeader title="My Todo List" subtitle={`${todos.length} tasks`} />
-      {/* Test: 'renders TextInput component with correct placeholder' - verifies input field */}
-      <TodoInput
-        value={text}
-        onChangeText={setText} // Test: 'handles text input changes' - handles text updates
-        onAdd={addTodo} // Test: 'should add todo when button is pressed' - triggers addTodo function
-        placeholder="Add a new todo"
-        buttonTitle="Add"
-      />
-      {/* Test: 'should add todo when button is pressed' - renders added todos */}
-      <TodoList todos={todos} onToggleTodo={toggleTodo} />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {/* Test: 'renders title "My Todo List"' - verifies title display */}
+        <AppHeader title="My Todo List" subtitle={`${todos.length} tasks`} />
+        {/* Test: 'renders TextInput component with correct placeholder' - verifies input field */}
+        <TodoInput
+          value={text}
+          onChangeText={setText} // Test: 'handles text input changes' - handles text updates
+          onAdd={addTodo} // Test: 'should add todo when button is pressed' - triggers addTodo function
+          placeholder="Add a new todo"
+          buttonTitle="Add"
+        />
+        {/* Test: 'should add todo when button is pressed' - renders added todos */}
+        <TodoList todos={todos} onToggleTodo={toggleTodo} />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
