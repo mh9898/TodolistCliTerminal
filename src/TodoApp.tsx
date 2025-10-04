@@ -1,5 +1,4 @@
 // src/TodoApp.tsx
-//change 1
 import React, { useState } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import AppHeader from '@components/AppHeader';
