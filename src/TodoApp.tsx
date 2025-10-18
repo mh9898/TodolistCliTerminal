@@ -5,7 +5,7 @@
 //change 5
 //change 6
 //change 7 testing
-//change 8 conflict
+//change 8 conflict resolve
 import React, { useState } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import AppHeader from '@components/AppHeader';
